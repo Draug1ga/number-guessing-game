@@ -1,7 +1,7 @@
 import random
 
 def generateNum():
-    num = random.randrange(0,11)
+    num = random.randrange(1,10)
     num = int(num)
     print(num)
     return num
@@ -13,7 +13,7 @@ def playerGuess():
         
     except ValueError:
         print("Oops that is not a valid entry")
-        playAgain()
+ 
     else:
         return gnum
 
@@ -28,35 +28,41 @@ def welcome():
         print("The current Highscore is {}".format(max(scoreList)))
 
 def guessLoop():
-    count = 1
-    num = generateNum()
-    gnum = playerGuess()
 
-    while gnum != num:
-        if gnum < num:
-            print("Your guess is too low")
-        elif gnum > num:
-            print("Your guess is too High")
+    try:
+        count = 1
+        num = generateNum()
         gnum = playerGuess()
-        count = count + 1
-        currentScore = int(100 / count)
-    else:
-        if count == 1:
-            currentScore = int(100 / count)
-            print("Thats correct!")
-            print("It took you {} guess".format(count))
-            print("Great Job your score is {}".format(currentScore))
-            highScore(currentScore)
 
-        elif count != 1:
-            print("Thats correct!")
-            print("It took you {} guesses".format(count))
-            print("Great Job your score is {}".format(currentScore))
-            highScore(currentScore)
+        while gnum != num:
+            if gnum < num:
+                print("Your guess is too low")
+            elif gnum > num:
+                print("Your guess is too High")
+            gnum = playerGuess()
+            count = count + 1
+            currentScore = int(100 / count)
+        else:
+            if count == 1:
+                currentScore = int(100 / count)
+                print("Thats correct!")
+                print("It took you {} guess".format(count))
+                print("Great Job your score is {}".format(currentScore))
+                highScore(currentScore)
+
+            elif count != 1:
+                print("Thats correct!")
+                print("It took you {} guesses".format(count))
+                print("Great Job your score is {}".format(currentScore))
+                highScore(currentScore)
+    except TypeError:
+        pass
 
 def playAgain():
     repeatgame = input("Type YES, if you'd like to play again?...")
     if repeatgame == "YES":
+        main()
+    elif repeatgame == "yes":
         main()
     else:
         print("Thank you for playing the number guessing game!")
