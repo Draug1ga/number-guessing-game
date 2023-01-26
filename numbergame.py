@@ -7,15 +7,16 @@ def generateNum():
     return num
 
 def playerGuess():
-    try:
-        guess = input("Please guess a number between 1 & 10...")
-        gnum = int(guess)
+#    try:
+    guess = input("Please guess a number between 1 & 10...")
+    gnum = int(guess)
         
-    except ValueError:
-        print("Oops that is not a valid entry")
+#    except ValueError:
+#        print("Oops that is not a valid entry")
+ #       playAgain()
  
-    else:
-        return gnum
+  #  else:
+    return gnum
 
 def welcome():
     print("NUMBER GUESSING GAME")
@@ -56,7 +57,11 @@ def guessLoop():
                 print("Great Job your score is {}".format(currentScore))
                 highScore(currentScore)
     except TypeError:
-        pass
+        print("Oops that is not a valid entry")
+        guessLoop()
+    except ValueError:
+        print("Oops that is not a valid entry")
+        guessLoop()
 
 def playAgain():
     repeatgame = input("Type YES, if you'd like to play again?...")
